@@ -1,0 +1,2 @@
+This script checks /var/auth.log for failed connection attempts.
+It then takes the IP-addresses and checks them with ipapi
