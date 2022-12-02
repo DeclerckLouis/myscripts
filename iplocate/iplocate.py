@@ -26,6 +26,7 @@ def get_location(ip_address):
         "city": response.get("city"),
         "region": response.get("region"),
         "country": response.get("country_name"),
+        "org": response.get("org")
     }
     return location_data
 
@@ -38,8 +39,4 @@ for ip in failed_iplist:
 
 print(tabulate.tabulate(locationlist, headers="keys"))
 
-# for i in list:
-#     if i["country"] == "United States":
-#         print(i)
-        
 
