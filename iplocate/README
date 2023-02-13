@@ -1,2 +1,5 @@
 This script checks /var/auth.log for failed connection attempts.
 It then takes the IP-addresses and checks them with ipapi
+
+The script doesn't do anything with the IP-addresses, it just prints them to the screen.
+it's not that good but a fun exercise.
