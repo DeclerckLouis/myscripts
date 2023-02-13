@@ -20,6 +20,7 @@ $ipv4 = "192.168.153.200"
 $gateway = "192.168.153.1"
 New-NetIPAddress -InterfaceIndex $interfaceIndex -IPAddress $IPv4 -PrefixLength 24 -DefaultGateway $Gateway
 Set-DnsClientServerAddress -InterfaceIndex $interfaceIndex -ServerAddresses $Gateway
+ping google.com
 
 #check ip address
 ipconfig /all
@@ -31,5 +32,7 @@ Update-Help
 Install-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools
 
 #install AD forest
-install-ADDSForest -DomainName "snwb.local" -DomainNetbiosName "SNWB" -SafeModeAdministratorPassword (ConvertTo-SecureString -AsPlainText "P@ssw0rd" -Force) -Force:$true
+install-ADDSForest -DomainName "local.test" -DomainNetbiosName "local" -SafeModeAdministratorPassword (ConvertTo-SecureString -AsPlainText "Test123" -Force) -Force:$true
+
+
 

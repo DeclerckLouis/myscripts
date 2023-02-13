@@ -39,4 +39,3 @@ for ip in failed_iplist:
 
 print(tabulate.tabulate(locationlist, headers="keys"))
 
-

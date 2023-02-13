@@ -1,4 +1,7 @@
 ﻿#This script is what i used in SimLab1 to unlock accounts. It will be edited in the near future to use a GUI to select the account to unlock, instead of typing it in the console.
+#
+##This script requires ‘RSAT: Active Directory Domain Services and Lightweight Directory Services Tools‘ in order to work.
+
 
 Add-WindowsFeature RSAT-AD-Powershell
 Import-module ActiveDirectory

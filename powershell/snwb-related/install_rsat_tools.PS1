@@ -16,4 +16,8 @@
 #
 
 #the command to installl RSAT tools on a computer is:
-Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability –Online
+Get-WindowsCapability -Name RSAT* -Online
+#only install the AD tools:
+Add-WindowsCapability -Name rsat.ActiveDirectory* -Online
+#install all RSAT tools:
+Add-WindowsCapability -Name RSAT* -Online
