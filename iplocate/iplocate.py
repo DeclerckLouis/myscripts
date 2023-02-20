@@ -8,7 +8,7 @@ def get_failed_ip():
     for line in loglines:
         line = line.strip()
         if "Connection closed" in line and "[preauth]" in line:
-            port = line.split()[-2]
+            # port = line.split()[-2]
             ip_address = line.split()[-4]
             if ip_address not in iplist:
                 iplist.append(ip_address)

@@ -36,3 +36,4 @@ install-ADDSForest -DomainName "local.test" -DomainNetbiosName "local" -SafeMode
 
 
 
+

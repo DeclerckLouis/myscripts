@@ -5,11 +5,11 @@
 
 Add-WindowsFeature RSAT-AD-Powershell
 Import-module ActiveDirectory
-cls
+Clear-Host
 
 #alle locked accounts opvragen + name en samaccountname afprinten
 write-Host "Alle locked accounts: "
-$lockedaccounts = Search-ADAccount -LockedOut | Select name,samaccountname
+$lockedaccounts = Search-ADAccount -LockedOut | Select-Object name,samaccountname
 $lockedaccounts
 write-Host "Einde locked accounts. (Indien hier niks staat, dan zijn er geen locked accounts.)"
 write-Host ""
