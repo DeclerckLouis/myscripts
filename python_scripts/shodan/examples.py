@@ -9,14 +9,12 @@ api = Shodan(cred.shodan_key)
 # ipinfo = api.host('8.8.8.8')
 # print(ipinfo)
 
+# Get the total number of services that are running on port 80
+# http_services = api.count('port:80')
+
 # # Search for websites that have been "hacked"
 # for banner in api.search_cursor('http.title:"hacked by"'):
 #     print(banner)
-
-
-# # Get the total number of industrial control systems services on the Internet
-# ics_services = api.count('tag:ics')
-# print(f"Industrial Control Systems: {ics_services['total']}")
 
 out = api.dns.domain_info(domain="howest.be")
 subdomainslist = out["data"]
