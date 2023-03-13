@@ -1,5 +1,5 @@
 #!/bin/python3
-import requests, time
+import requests
 
 headers = {"Cookie": ""} # Add your cookie here
 
