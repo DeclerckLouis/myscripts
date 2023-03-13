@@ -1,5 +1,7 @@
 from shodan import Shodan
+from tabulate import tabulate
 import cred
+
 
 api = Shodan(cred.shodan_key)
 
@@ -18,4 +20,16 @@ api = Shodan(cred.shodan_key)
 
 out = api.dns.domain_info(domain="howest.be")
 subdomainslist = out["data"]
-print(subdomainslist)
+to_tabulate = []
+for sub in subdomainslist:
+    try:
+        type = sub["type"]
+        host = sub["value"]
+        open_ports = sub["ports"]
+    except KeyError:
+        type = sub["type"]
+        host = sub["value"]
+        open_ports = "None"
+    to_tabulate.append([type, host, open_ports])
+
+print(tabulate(to_tabulate, headers=["Type", "Host", "Open ports"]))

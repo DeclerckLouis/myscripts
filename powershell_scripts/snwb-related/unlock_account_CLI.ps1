@@ -29,3 +29,6 @@ while (1 -eq 1){
     }
 }
 
+
+#foreach disk in Get-disk, print the serial number
+Get-Disk | foreach { $_.SerialNumber }

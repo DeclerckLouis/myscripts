@@ -1,16 +1,16 @@
 #get DN of a user
-$User = Get-ADUser -Identity "user1" -Properties DistinguishedName
+$User = Get-ADUser -Identity "bob" -Properties DistinguishedName
 write_host $User.DistinguishedName
 
 #get DN of a group
-$Group = Get-ADGroup -Identity "group1" -Properties DistinguishedName
+$Group = Get-ADGroup -Identity "users" -Properties DistinguishedName
 write_host $Group.DistinguishedName
 
 #add user to group
-Add-ADGroupMember -Identity "group1" -Members "user1"
+Add-ADGroupMember -Identity "group1" -Members "bob"
 
 #remove user from group
-Remove-ADGroupMember -Identity "group1" -Members "user1"
+Remove-ADGroupMember -Identity "group1" -Members "bob"
 
 
 
@@ -26,6 +26,13 @@ write_host $NC.SchemaNamingContext
 $NC = Get-ADDomainController -Identity "WS2_2022_core" -Properties DefaultNamingContext
 
 #create a AD user with password and OU "TEST"
-New-ADUser -Name "Bob The Builder" -GivenName "Bob" -Surname "The Builder" -SamAccountName "bob.tb" -Path "OU=test,DC=local,DC=test" -AccountPassword(Read-Host -AsSecureString "Input Password") -PasswordNeverExpires $true -Enabled $true
+$OU = Get-ADOrganizationalUnit -Identity "OU=test,DC=local,DC=test" -Properties DistinguishedName
+write_host $OU
+New-ADUser -Name "bob" -DisplayName "Bob The builder" -Accountpassword (ConvertTo-SecureString -AsPlainText "Test123" -Force) -Path $OU
 
+
+
+
+#create OU test
+New-ADOrganizationalUnit -Name "OU=test,DC=local,DC=test" -Path "DC=local,DC=test"
 
