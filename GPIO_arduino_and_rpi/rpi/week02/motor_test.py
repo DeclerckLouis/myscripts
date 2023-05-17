@@ -17,3 +17,4 @@ except KeyboardInterrupt as e:
 finally:
     motor.stop()
     GPIO.cleanup()
+    
