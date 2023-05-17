@@ -1,3 +1,5 @@
 *cred.py
 *credentials.py
 *__pycache__*
+*.vscode*
+temp/*
