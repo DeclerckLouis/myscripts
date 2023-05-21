@@ -7,3 +7,18 @@ $disableddaccounts = Search-ADAccount -AccountDisabled| Select-Object name,samac
 $diabledaccounts
 write-Host "Einde disabled accounts. (Indien hier niks staat, dan zijn er geen disabled accounts.)"
 write-Host ""
+
+#één account unlocken, of niks unlocken.
+$yesorno = read-Host "Wilt u een account re-enablen? (ja/nee)"
+
+while (1 -eq 1){
+    if($yesorno -eq "ja"){
+        $samaccountname = Read-Host "Geef een gebruikersnaam op om te re-enablen"
+        Enable-ADAccount $samaccountname
+        $yesorno = read-Host "Wilt u nog een account unlocken? (ja/nee)"
+    }
+    elseif($yesorno -eq "nee"){
+        break
+        #exit
+    }
+}
