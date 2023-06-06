@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/bin/env figlet "$(hostname)" | /usr/bin/env lolcat -f
+/usr/bin/env figlet "$(hostname)"
