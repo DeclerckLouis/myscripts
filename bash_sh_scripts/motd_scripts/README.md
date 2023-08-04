@@ -4,4 +4,5 @@
 - neoFetch
 - Fail2Ban
 - lolcat
+- figlet
 
