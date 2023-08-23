@@ -1,6 +1,7 @@
 import datetime
 import requests
 import os
+import re
 
 #check if the save file exists, if not, create it and write the header
 # towrite = "/var/www/apache/failedip/failedip.csv"
@@ -17,8 +18,14 @@ with open(towrite, 'a+') as csvfile:
                 for l in lines:
                     l=l.strip()
                     #check if the line contains the string "invalid user" or "authenticating user" and "[preauth]"
-                    if ("from invalid user" in l or "by invalid user" or "authenicating user" in l) and "[preauth]" in l and not "Change of username" in l:
-                        ip_address = l.split()[-4]
+                    if (("from invalid user" in l or "by invalid user" in l or "authenicating user" in l) and "[preauth]" in l):
+                        ip_address = re.search(r"([0-9]+(\.[0-9]+)+)", l)
+                        try:
+                            ip_address = ip_address.group(0)
+                        except AttributeError as ae:
+                            print(ae)
+                            print(f"error was on line: {l}")
+                            continue
                         month = l.split()[0]
                         day = l.split()[1]
                         time = l.split()[2]
@@ -42,7 +49,7 @@ with open(towrite, 'a+') as csvfile:
                     if l.startswith(lastlog):
                         print("found last log")
                     #check if the line contains the string "invalid user" or "authenticating user" and "[preauth]"
-                        if ("from invalid user" in l or "by invalid user" or "authenicating user" in l) and "[preauth]" in l and not "Change of username" in l:
+                        if (("from invalid user" in l or "by invalid user" in l or "authenicating user" in l) and "[preauth]" in l):
                             ip_address = l.split()[-4]
                             month = l.split()[0]
                             day = l.split()[1]
