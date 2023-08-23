@@ -15,7 +15,7 @@ with open('/var/www/apache/failedip/failedip.csv', 'a+') as csvfile:
                 for l in lines:
                     l=l.strip()
                     #check if the line contains the string "invalid user" or "authenticating user" and "[preauth]"
-                    if ("invalid user" in l or "authenicating user" in l) and "[preauth]" in l:
+                    if ("from invalid user" in l or "by invalid user" or "authenicating user" in l) and "[preauth]" in l and not "Change of username" in l:
                         ip_address = l.split()[-4]
                         month = l.split()[0]
                         day = l.split()[1]
@@ -40,7 +40,7 @@ with open('/var/www/apache/failedip/failedip.csv', 'a+') as csvfile:
                     if l.startswith(lastlog):
                         print("found last log")
                     #check if the line contains the string "invalid user" or "authenticating user" and "[preauth]"
-                        if ("from invalid user" in l or "by invalid user" or "authenicating user" in l) and "[preauth]" in l:
+                        if ("from invalid user" in l or "by invalid user" or "authenicating user" in l) and "[preauth]" in l and not "Change of username" in l:
                             ip_address = l.split()[-4]
                             month = l.split()[0]
                             day = l.split()[1]
