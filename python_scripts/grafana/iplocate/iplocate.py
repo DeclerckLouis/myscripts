@@ -3,9 +3,9 @@ import requests
 import os
 import re
 
-#check if the save file exists, if not, create it and write the header
-# towrite = "/var/www/apache/failedip/failedip.csv"
-towrite = "failedip.csv"
+#change location for debugging
+towrite = "/var/www/apache/failedip/failedip.csv"
+# towrite = "failedip.csv"
 
 with open(towrite, 'a+') as csvfile:
         if os.stat(towrite).st_size == 0:
@@ -31,8 +31,10 @@ with open(towrite, 'a+') as csvfile:
                         time = l.split()[2]
                         year = datetime.datetime.now().year
                         logtime = datetime.datetime.strptime(day + " " + month + " " + str(year) + " " + time, "%d %b %Y %H:%M:%S")
+                        #logtime -2 hours for UTC time in grafana (idk why)
+                        processedtime = logtime.hour -2 
                         if ip_address not in iplist:
-                            iplist.append([logtime, ip_address])
+                            iplist.append([processedtime, ip_address])
 
         else:
             print("file is not empty")
@@ -56,8 +58,9 @@ with open(towrite, 'a+') as csvfile:
                             time = l.split()[2]
                             year = datetime.datetime.now().year
                             logtime = datetime.datetime.strptime(day + " " + month + " " + str(year) + " " + time, "%d %b %Y %H:%M:%S")
+                            processedtime = logtime.hour -2
                             if ip_address not in iplist:
-                                iplist.append([logtime, ip_address])
+                                iplist.append([processedtime, ip_address])
                         
 with open(towrite, 'a+') as csvfile:
     for i in iplist:
