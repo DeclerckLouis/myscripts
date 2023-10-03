@@ -1,6 +1,6 @@
 # Hello there!
 
-import credentials
+import testcred as credentials
 
 import requests
 from requests.auth import HTTPBasicAuth
