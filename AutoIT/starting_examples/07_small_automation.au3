@@ -16,7 +16,7 @@ WinWaitActive("Notepad", "Save")
 ; Next we want to automatically press Alt-N to select the No/Don't save button 
 ; (Underlined letters in windows usually indicate that you can use the ALT key and that letter as a keyboard shortcut). 
 ; In the Send function to send an ALT key we use ! .
-Send("!n") 
+;~ Send("!n") 
 
 ; We can also send arrows and enters
 Send("{RIGHT}")
