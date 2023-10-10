@@ -1,0 +1,31 @@
+body {
+    background-color: rgb(50, 185, 255);
+    font-size: 1em;
+    color: #ffffff;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    align-self: center;
+    color: #012d45;
+}
+
+li {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    align-self: center;
+    color: #012d45;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #012d45;
+    align-self: center;
+}
