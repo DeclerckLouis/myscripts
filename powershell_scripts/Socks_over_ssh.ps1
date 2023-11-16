@@ -48,10 +48,10 @@ function Set-Proxy {
         $Port    
     )
     #Test if the TCP Port on the server is open before applying the settings
-    If ((Test-NetConnection -ComputerName $server -Port $Port).TcpTestSucceeded) {
+    If ((Test-NetConnection -ComputerName $Server -Port $Port).TcpTestSucceeded) {
         Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyServer -Value "socks=$($Server):$($Port)"
         Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyEnable -Value 1
-        #Get-Proxy #Show the configuration 
+        Get-Proxy #Show the configuration 
     }
     Else {
         Write-Error -Message "The proxy address is not valid:  $($Server):$($Port)"
@@ -59,24 +59,27 @@ function Set-Proxy {
 }
  
 function Remove-Proxy (){    
-    Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyServer -Value "null"
+    Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyServer -Value ""
     Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyEnable -Value 0
 }
 
 
 
 #start proxy over ssh
-$socksport = 1337
-$proc = Start-Process -NoNewWindow -FilePath ssh.exe -ArgumentList "-D $socksport -f -C -q -N modem" -PassThru 
+$Socksport = 1337
+$proc = Start-Process -NoNewWindow -FilePath ssh.exe -ArgumentList "-D $Socksport -f -C -q -N modem" -PassThru -Verbose
 
-Set-Proxy -Server "localhost" -Port $socksport
+Set-Proxy -Server "localhost" -Port $Socksport
 
 while ($proc.HasExited -eq $false) {
     # Ask to stop the proxy connection
-    $close = Read-Host "stop proxy? (y/n)"
-    if ($close -eq "y"){
+    $close = Read-Host "To stop proxy, press enter."
+    if ($close -contains ""){
+        $proc.CloseMainWindow($true)
         $proc | Stop-Process
         Remove-Proxy
         cls
-        Write-Host "Thank you and have a nice day!" }
+        }
 }
+cls
+Write-Host "Thank you and have a nice day!"
