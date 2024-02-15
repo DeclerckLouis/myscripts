@@ -20,7 +20,7 @@ git config --global user.name "DeclerckLouis"
 git clone DeclerckLouis/myscripts myscripts
 git clone DeclerckLouis/ansible ansible
 git clone DeclerckLouis/docker docker
-git clone git@github.com:DeclerckLouis/configs.git
+git clone git@github.com:DeclerckLouis/configs.git configs
 
 # docker installation
 ## adding docker gpg key
@@ -54,4 +54,3 @@ apt-get install -y fail2ban rsyslog
 cp configs/fail2ban/jail.conf /etc/fail2ban/jail.d/jail.conf
 cp configs/fail2ban/jail.d/* /etc/fail2ban/jail.d/
 systemctl restart fail2ban
-
