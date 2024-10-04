@@ -28,6 +28,10 @@ for sub in subdomainslist:
         type = sub["type"]
         host = sub["value"]
         open_ports = "None"
+    except KeyboardInterrupt:
+        print(f"\n User interrupted.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
     to_tabulate.append([type, host, open_ports])
 
 print(tabulate(to_tabulate, headers=["Type", "Host", "Open ports"]))
