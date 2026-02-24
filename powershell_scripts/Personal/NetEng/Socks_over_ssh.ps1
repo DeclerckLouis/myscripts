@@ -1,4 +1,3 @@
-### THIS SCRIPT IS USED TO GET AROUND SCHOOL FIREWALLS ETC. ###
 # Connects to a remote server (owned by me and known as "modem") via ssh and sets up a socks proxy. 
 function Get-Proxy (){
     Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' | Select-Object ProxyServer, ProxyEnable        
