@@ -13,14 +13,12 @@ apt-get update -y
 apt-get upgrade -y
 
 # git config
-git config --global user.email "declerck.louis@student.howest.be"
+git config --global user.email "louis.declerck@packetflow.be"
 git config --global user.name "DeclerckLouis"
 
 # git clones
 git clone DeclerckLouis/myscripts myscripts
 git clone DeclerckLouis/ansible ansible
-git clone DeclerckLouis/docker docker
-git clone git@github.com:DeclerckLouis/configs.git configs
 
 # docker installation
 ## adding docker gpg key
